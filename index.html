@@ -1,0 +1,1987 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b060b">
+<title>THE KHAWLA FILES — Ameen's Confidential Archive</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black: #0b060b;
+  --dark: #120a11;
+  --panel: #1b101a;
+  --panel2: #261421;
+  --wine: #6f294b;
+  --rose: #eaa0bc;
+  --rose-light: #f8dce8;
+  --gold: #d9bd88;
+  --white: #f9edf2;
+  --muted: #b7a2b0;
+  --line: #573047;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --mono: "DM Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  margin: 0;
+  color: var(--white);
+  background: var(--black);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.85;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 15%, #57203c30, transparent 40%),
+    radial-gradient(ellipse at 85% 45%, #3d183327, transparent 45%),
+    radial-gradient(ellipse at 50% 100%, #69234020, transparent 50%);
+}
+
+body.locked { overflow: hidden; }
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible, input:focus-visible, a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 5px;
+}
+
+::selection { background: #8c3e62; color: white; }
+
+a { color: inherit; text-decoration: none; }
+
+button:disabled { opacity: .45; cursor: not-allowed; }
+
+img { max-width: 100%; }
+
+/* THE ATMOSPHERE */
+
+#sky, #petalLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#sky { z-index: -1; }
+#petalLayer { z-index: 90; }
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff4f8;
+  opacity: .45;
+  animation: twinkle var(--duration, 4s) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .15; transform: scale(.75); }
+  to { opacity: .9; transform: scale(1.45); }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f8dce8, transparent);
+  transform: rotate(-35deg);
+  animation: shooting 1.8s ease-out forwards;
+}
+
+@keyframes shooting {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-260px, 170px) rotate(-35deg); }
+}
+
+.ambient-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .06;
+  background: #ed76a8;
+  pointer-events: none;
+  z-index: -2;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.ambient-one { top: 8%; left: -250px; }
+.ambient-two { bottom: 0; right: -270px; animation-delay: -9s; }
+
+@keyframes drift {
+  to { transform: translate(180px, 100px) scale(1.3); }
+}
+
+/* INTRO FILM */
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow-y: auto;
+  background:
+    radial-gradient(ellipse at 50% 40%, #4b1d36 0%, #1d0c19 40%, #080508 85%);
+  transition: opacity 1.4s ease, visibility 1.4s ease;
+}
+
+#intro.leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-inner {
+  width: min(760px, 100%);
+  text-align: center;
+  padding: 35px 0;
+  animation: cinematicEnter 1.8s ease both;
+}
+
+@keyframes cinematicEnter {
+  from { opacity: 0; transform: translateY(25px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.micro {
+  font: 10px var(--mono);
+  letter-spacing: 2.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.intro-seal {
+  display: grid;
+  place-items: center;
+  width: 95px;
+  height: 95px;
+  margin: 40px auto 30px;
+  border: 1px solid #d9bd8877;
+  border-radius: 50%;
+  color: var(--rose);
+  font: 48px var(--serif);
+  box-shadow: 0 0 70px #ed9dbb12, inset 0 0 35px #ed9dbb0d;
+  animation: sealPulse 4s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+  50% { box-shadow: 0 0 90px #ed9dbb35, inset 0 0 40px #ed9dbb1b; }
+}
+
+.intro-title {
+  font: 400 clamp(3.5rem, 12vw, 8.2rem)/.86 var(--serif);
+  letter-spacing: -2px;
+  margin: 24px 0;
+}
+
+.intro-title em { color: var(--rose); font-weight: 400; }
+
+.intro-subtitle {
+  font: italic clamp(1.1rem, 3vw, 1.65rem) var(--serif);
+  color: #e3cad6;
+  margin: 25px auto;
+}
+
+.gold-line {
+  width: 110px;
+  height: 1px;
+  margin: 30px auto;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.intro-copy {
+  max-width: 430px;
+  margin: auto;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.intro-recipient {
+  margin-top: 40px;
+  color: var(--gold);
+  font: 10px var(--mono);
+  letter-spacing: 2px;
+}
+
+.primary-button, .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #c17b99;
+  padding: 13px 22px;
+  background: #ed9dbb0a;
+  color: var(--white);
+  font-size: .72rem;
+  letter-spacing: 1.5px;
+  transition: .3s ease;
+}
+
+.primary-button { margin-top: 25px; }
+
+.primary-button:hover, .button:hover:not(:disabled) {
+  background: #ed9dbb1b;
+  border-color: var(--rose-light);
+  box-shadow: 0 0 35px #ed9dbb15;
+  transform: translateY(-2px);
+}
+
+.primary-button span { color: var(--gold); }
+
+.intro-bottom {
+  margin-top: 38px;
+  font: 9px var(--mono);
+  letter-spacing: 1px;
+  color: #8e7385;
+}
+
+/* LOADING / TRANSITION */
+
+#transitionScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  display: none;
+  place-items: center;
+  text-align: center;
+  padding: 30px;
+  background: #0b060b;
+}
+
+#transitionScreen.show { display: grid; }
+
+.transition-message {
+  font: italic clamp(2rem, 6vw, 4rem)/1.2 var(--serif);
+  color: var(--rose-light);
+}
+
+/* TOP NAVIGATION */
+
+.progress-track {
+  position: fixed;
+  z-index: 250;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ffffff0b;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--wine), var(--rose), var(--gold));
+  transition: width .1s linear;
+}
+
+.topbar {
+  position: sticky;
+  z-index: 200;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 5%;
+  border-bottom: 1px solid #ffffff0a;
+  background: #0b060be8;
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  font: italic 1.5rem var(--serif);
+  color: var(--rose-light);
+  white-space: nowrap;
+}
+
+.navlinks {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.navlinks a {
+  color: var(--muted);
+  font-size: .69rem;
+  transition: color .2s;
+}
+
+.navlinks a:hover { color: var(--rose); }
+
+/* MUSIC PLAYER */
+
+.music-player {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 15px;
+  max-width: calc(100vw - 30px);
+  border: 1px solid #89536b80;
+  border-radius: 50px;
+  background: #180b15ed;
+  box-shadow: 0 10px 40px #0007;
+  backdrop-filter: blur(15px);
+}
+
+.music-disc {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #4c2038;
+  color: var(--rose-light);
+  flex-shrink: 0;
+}
+
+.music-disc.playing { animation: spin 8s linear infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.music-info { min-width: 0; }
+
+.music-name { font-size: .72rem; font-weight: 500; }
+.music-state { color: var(--muted); font-size: .6rem; }
+
+.music-toggle {
+  padding: 5px;
+  border: 0;
+  background: transparent;
+  color: var(--rose-light);
+  font-size: 1.15rem;
+}
+
+/* GLOBAL LAYOUT */
+
+main { width: 100%; }
+
+section {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: 120px 28px;
+  position: relative;
+}
+
+section::after {
+  content: "";
+  display: block;
+  width: 65px;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #80506d, transparent);
+}
+
+.section-heading {
+  max-width: 730px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.kicker {
+  color: var(--gold);
+  font: 10px var(--mono);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+h1, h2, h3, p { overflow-wrap: anywhere; }
+
+h2 {
+  font: 400 clamp(2.8rem, 8vw, 5.8rem)/.99 var(--serif);
+  letter-spacing: -.8px;
+  margin: 20px 0;
+}
+
+h2 em { color: var(--rose); }
+
+h3 {
+  font: 500 1.7rem/1.15 var(--serif);
+  color: var(--rose-light);
+  margin: 12px 0;
+}
+
+p { color: var(--muted); }
+
+.center { text-align: center; }
+
+.gold { color: var(--gold); }
+
+.big-quote {
+  font: italic clamp(1.6rem, 4vw, 2.4rem)/1.35 var(--serif);
+  color: var(--rose-light);
+  text-align: center;
+  max-width: 720px;
+  margin: 35px auto;
+}
+
+.section-note {
+  font: italic 1.2rem var(--serif);
+  color: #cdb1c1;
+}
+
+.card {
+  padding: 30px;
+  background: linear-gradient(145deg, #251321e8, #140b13f5);
+  border: 1px solid #72405b70;
+  box-shadow: 0 25px 70px #00000015;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .85s ease, transform .85s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* OPENING SCENE */
+
+.hero {
+  min-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.hero h2 {
+  font-size: clamp(3.7rem, 11vw, 8rem);
+  margin: 25px 0;
+}
+
+.hero h2 em { text-shadow: 0 0 60px #ed9dbb24; }
+
+.hero-copy {
+  max-width: 500px;
+  font-size: .95rem;
+}
+
+.chapter-stamp {
+  margin-top: 55px;
+  color: #9d8292;
+  font: 9px var(--mono);
+  letter-spacing: 2px;
+}
+
+.scroll-cue {
+  margin-top: 35px;
+  font: 10px var(--mono);
+  letter-spacing: 2px;
+  color: var(--gold);
+  animation: float 2.5s ease-in-out infinite;
+}
+
+@keyframes float { 50% { transform: translateY(8px); } }
+
+/* PORTRAIT */
+
+.portrait-frame {
+  width: min(360px, 100%);
+  margin: 35px auto;
+  padding: 9px;
+  border: 1px solid #d9bd8877;
+  background: #140b13;
+  box-shadow: 0 0 80px #ed9dbb10;
+}
+
+.portrait-frame img {
+  display: block;
+  width: 100%;
+  max-height: 490px;
+  object-fit: cover;
+  filter: saturate(.88);
+}
+
+.portrait-caption {
+  padding: 15px 4px 4px;
+  text-align: center;
+  color: var(--gold);
+  font: italic 1.2rem var(--serif);
+}
+
+/* TIMELINE */
+
+.timeline {
+  max-width: 700px;
+  margin: 35px auto;
+  padding-left: 28px;
+  border-left: 1px solid #88516b;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 42px 18px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 18px #ed9dbb60;
+}
+
+.file-id {
+  color: var(--gold);
+  font: 10px var(--mono);
+  letter-spacing: 2px;
+}
+
+.timeline-item h3 { margin-top: 8px; }
+
+.timeline-item p { max-width: 590px; }
+
+/* THE FIRST IMPRESSION */
+
+.case-header {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.case-number {
+  display: inline-block;
+  border: 1px solid #9d607b;
+  padding: 7px 12px;
+  color: var(--rose);
+  font: 10px var(--mono);
+  letter-spacing: 2px;
+  transform: rotate(-2deg);
+}
+
+.case-paper {
+  max-width: 780px;
+  margin: 30px auto;
+  padding: clamp(22px, 5vw, 50px);
+  background: #e9d9cb;
+  color: #271720;
+  transform: rotate(-.4deg);
+  box-shadow: 0 25px 70px #0005;
+}
+
+.case-paper p { color: #483440; }
+
+.case-paper h3 { color: #6c294a; }
+
+.case-paper .file-id { color: #6c294a; }
+
+.quote-big {
+  font: italic clamp(2rem, 6vw, 4.3rem)/1.05 var(--serif);
+  color: #6c294a;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.case-stamp {
+  display: inline-block;
+  border: 2px solid #a33d58;
+  color: #a33d58;
+  font: 10px var(--mono);
+  letter-spacing: 2px;
+  padding: 5px 10px;
+  transform: rotate(-6deg);
+}
+
+/* INTERACTIVE BUTTONS */
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.choice-button {
+  min-width: 125px;
+  padding: 13px 17px;
+  background: #ed9dbb08;
+  border: 1px solid #80506d;
+  color: var(--white);
+  font-size: .8rem;
+  transition: .25s ease;
+}
+
+.choice-button:hover {
+  background: #ed9dbb17;
+  border-color: var(--rose);
+}
+
+.choice-result {
+  min-height: 90px;
+  max-width: 600px;
+  margin: 25px auto 0;
+  text-align: center;
+  font: italic 1.45rem/1.5 var(--serif);
+  color: var(--rose-light);
+}
+
+/* REASONS */
+
+.reason-card { min-height: 205px; }
+
+.reason-number {
+  color: var(--gold);
+  font: italic 2.2rem var(--serif);
+}
+
+.reason-card h3 { font-size: 1.55rem; }
+
+/* ROSES */
+
+.rose-garden {
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  min-height: 240px;
+}
+
+.rose-button {
+  border: 0;
+  background: transparent;
+  color: var(--rose);
+  font-size: clamp(4rem, 12vw, 7rem);
+  filter: drop-shadow(0 0 22px #ed9dbb25);
+  transition: transform .4s;
+}
+
+.rose-button:hover { transform: scale(1.1) rotate(-5deg); }
+
+.rose-button.bloomed { animation: bloom .8s ease; }
+
+@keyframes bloom {
+  0% { transform: scale(.6) rotate(-20deg); }
+  70% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+.rose-message {
+  max-width: 520px;
+  margin: 20px auto;
+  text-align: center;
+  color: var(--rose-light);
+  font: italic 1.4rem/1.6 var(--serif);
+  min-height: 45px;
+}
+
+/* LETTERS FOR DIFFERENT MOODS */
+
+.note-card {
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.note-card:hover {
+  border-color: #b16d8d;
+  transform: translateY(-3px);
+}
+
+.note-card h3 { font-size: 1.45rem; }
+
+.note-content {
+  display: none;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #74415b;
+  color: var(--rose-light);
+  font: italic 1.2rem/1.7 var(--serif);
+}
+
+.note-card.open .note-content {
+  display: block;
+  animation: fadeUp .45s ease both;
+}
+
+.note-instruction {
+  color: var(--gold);
+  font: 9px var(--mono);
+  letter-spacing: 1px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* DISCOVERY FILES */
+
+.discovery {
+  cursor: pointer;
+  outline: none;
+  transition: border-color .3s, transform .3s, background .3s;
+}
+
+.discovery:hover, .discovery:focus-visible {
+  border-color: #c17b99;
+  transform: translateY(-4px);
+}
+
+.discovery-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 15px;
+  border: 1px solid #80506d;
+  border-radius: 50%;
+  color: var(--rose);
+}
+
+.discovery-answer {
+  display: none;
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid #80506d70;
+  color: var(--rose-light);
+  font: italic 1.25rem/1.5 var(--serif);
+}
+
+.discovery.found .discovery-answer {
+  display: block;
+  animation: fadeUp .5s ease both;
+}
+
+.discovery.found .file-id { color: var(--rose); }
+
+#clueStatus {
+  color: var(--gold);
+  font: 10px var(--mono);
+  letter-spacing: 2px;
+}
+
+/* THE BIRTHDAY */
+
+.age-number {
+  color: var(--rose);
+  font: 400 clamp(7rem, 22vw, 14rem)/.9 var(--serif);
+  text-shadow: 0 0 80px #ed9dbb20;
+  margin: 20px 0;
+}
+
+.birthday-card {
+  max-width: 750px;
+  margin: auto;
+  text-align: center;
+  padding: clamp(25px, 6vw, 65px);
+  border: 1px solid #8a506b70;
+  background: linear-gradient(145deg, #281423d9, #140a13f2);
+}
+
+/* PASSWORD / FINAL LETTER */
+
+.final-gate {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.lock-icon {
+  font-size: 3rem;
+  color: var(--gold);
+  margin: 15px 0 25px;
+  text-shadow: 0 0 40px #d9bd8830;
+}
+
+.password-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 30px 0 10px;
+}
+
+.password-input {
+  width: min(300px, 100%);
+  padding: 13px 16px;
+  border: 1px solid #80506d;
+  background: #0b060b;
+  color: var(--white);
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.password-input:focus { border-color: var(--rose); }
+
+#errorMessage {
+  min-height: 27px;
+  color: #ffadc3;
+  font-size: .8rem;
+}
+
+.letter {
+  display: none;
+  margin: 40px auto 0;
+  padding: clamp(22px, 6vw, 55px);
+  border: 1px solid #a86a85;
+  background:
+    radial-gradient(ellipse at 50% 0%, #47223870, transparent 55%),
+    linear-gradient(145deg, #261220, #120a12);
+  text-align: left;
+  box-shadow: 0 0 100px #ed9dbb0c;
+}
+
+.letter.open {
+  display: block;
+  animation: letterEnter 1.4s ease both;
+}
+
+@keyframes letterEnter {
+  from { opacity: 0; transform: translateY(20px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.letter-label {
+  text-align: center;
+  font: 9px var(--mono);
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 30px;
+}
+
+#typedLetter {
+  color: #f7e8ef;
+  font: 400 clamp(1.15rem, 2.8vw, 1.5rem)/1.9 var(--serif);
+  white-space: pre-wrap;
+  min-height: 100px;
+  overflow-wrap: anywhere;
+}
+
+#typedLetter.typing::after {
+  content: "▋";
+  color: var(--rose);
+  animation: blink .8s steps(2) infinite;
+}
+
+@keyframes blink { to { opacity: 0; } }
+
+.signature {
+  opacity: 0;
+  margin-top: 30px;
+  text-align: right;
+  color: var(--rose);
+  font: italic 2rem var(--serif);
+  transition: opacity 1.5s;
+}
+
+.signature.show { opacity: 1; }
+
+.letter-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.letter-footer {
+  text-align: center;
+  margin-top: 35px;
+  color: var(--gold);
+  font: 9px var(--mono);
+  letter-spacing: 1.5px;
+}
+
+/* END CREDITS */
+
+footer {
+  padding: 90px 20px 130px;
+  text-align: center;
+}
+
+.footer-heart {
+  color: var(--rose);
+  font-size: 2rem;
+}
+
+.footer-title {
+  margin: 15px 0;
+  font: italic clamp(2rem, 5vw, 3.4rem) var(--serif);
+}
+
+.footer-line {
+  width: 75px;
+  height: 1px;
+  background: var(--gold);
+  margin: 25px auto;
+}
+
+.footer-small {
+  color: #8f7586;
+  font: 9px var(--mono);
+  letter-spacing: 1.5px;
+}
+
+/* FALLING PETALS */
+
+.petal {
+  position: absolute;
+  top: -35px;
+  color: var(--rose);
+  animation: fall var(--fall, 7s) linear forwards;
+  opacity: .85;
+}
+
+@keyframes fall {
+  to {
+    transform: translate(var(--drift, 50px), 110vh) rotate(650deg);
+    opacity: 0;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 720px) {
+  .topbar { padding: 10px 14px; gap: 10px; }
+  .navlinks { gap: 9px; }
+  .navlinks a { font-size: .61rem; }
+  .brand { font-size: 1.25rem; }
+  section { padding: 85px 20px; }
+  .grid, .grid.two { grid-template-columns: 1fr; }
+  .hero { min-height: 80vh; }
+  .card { padding: 23px; }
+  .music-player { right: 9px; bottom: 9px; }
+  .case-paper { transform: none; }
+}
+
+@media (max-width: 420px) {
+  .navlinks { max-width: 225px; }
+  .navlinks a { font-size: .57rem; }
+  .brand { font-size: 1.15rem; }
+  .micro { letter-spacing: 1.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="sky" aria-hidden="true"></div>
+<div class="ambient-glow ambient-one"></div>
+<div class="ambient-glow ambient-two"></div>
+<div id="petalLayer" aria-hidden="true"></div>
+
+<!-- THE OPENING FILM -->
+<div id="intro">
+  <div class="intro-inner">
+    <div class="micro">A CONFIDENTIAL ARCHIVE · FILE 022</div>
+
+    <div class="intro-seal">✦</div>
+
+    <div class="micro">A STORY THAT WAS NEVER PLANNED</div>
+
+    <h1 class="intro-title">
+      The Khawla<br><em>Files.</em>
+    </h1>
+
+    <p class="intro-subtitle">
+      One girl. One terrible first impression.<br>
+      An unexpectedly unforgettable story.
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p class="intro-copy">
+      This archive contains classified memories, questionable decisions,
+      a suspicious amount of affection, and one message reserved for
+      a very specific person.
+    </p>
+
+    <div class="intro-recipient">RECIPIENT: KHAWLA · AGE: 22</div>
+
+    <button class="primary-button" id="enterArchive" type="button">
+      ENTER THE ARCHIVE <span>↗</span>
+    </button>
+
+    <div class="intro-bottom">
+      PREPARED BY AMEEN · HANDLE WITH CURIOSITY
+    </div>
+  </div>
+</div>
+
+<!-- ONE MUSIC ELEMENT FOR THE ENTIRE EXPERIENCE -->
+<audio id="music" loop preload="auto">
+  <source src="assets/still-with-you.mp3" type="audio/mpeg">
+</audio>
+
+<div class="progress-track"><div id="progressBar"></div></div>
+
+<div class="music-player">
+  <div class="music-disc" id="musicDisc">♫</div>
+  <div class="music-info">
+    <div class="music-name">Still With You</div>
+    <div class="music-state" id="musicState">Soundtrack on standby</div>
+  </div>
+  <button class="music-toggle" id="musicToggle" type="button"
+          aria-label="Play music" title="Play or pause soundtrack">▶</button>
+</div>
+
+<header class="topbar">
+  <a href="#opening" class="brand">The Khawla Files ♡</a>
+  <nav class="navlinks" aria-label="Main navigation">
+    <a href="#story">The story</a>
+    <a href="#case">The incident</a>
+    <a href="#roses">Roses</a>
+    <a href="#classified">Secrets</a>
+    <a href="#finale">Final file</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- SCENE 01: THE WORLD -->
+<section class="hero" id="opening">
+  <div class="kicker reveal">October 16 · The birthday edition</div>
+
+  <h2 class="reveal">
+    Hey, Khawla.<br>
+    It's your <em>universe.</em>
+  </h2>
+
+  <div class="gold-line reveal"></div>
+
+  <p class="hero-copy reveal">
+    You have unlocked Level 22. There are roses, a few secrets,
+    a suspiciously terrible opening line, and one very questionable
+    first impression.
+  </p>
+
+  <p class="section-note reveal">
+    Your mission, should you choose to accept it:
+    discover why this little website exists.
+  </p>
+
+  <div class="chapter-stamp reveal">SUBJECT 022 · CLASSIFIED · PROPERTY OF AMEEN</div>
+
+  <div class="scroll-cue">THE STORY BEGINS BELOW ↓</div>
+</section>
+
+<!-- SCENE 02: THE STORY -->
+<section id="story">
+  <div class="section-heading reveal">
+    <div class="kicker">Chapter 01 · The origin story</div>
+    <h2>It started with<br>a <em>terrible hello.</em></h2>
+    <p>
+      Some people meet in a cute, perfectly scripted way.
+      We apparently chose chaos.
+    </p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="file-id">RECORD 001 · TWO YEARS AGO</div>
+      <h3>Just another random encounter.</h3>
+      <p>
+        Azar. Two strangers. No grand plan.
+        Or so I thought.
+      </p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="file-id">RECORD 002 · THE OPENING LINE</div>
+      <h3>A historic failure of charm.</h3>
+      <p>
+        Me, with absolutely no charm on display:
+        "Fuck youu." I was trolling people.
+        Don't judge the whole character by the first episode.
+      </p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="file-id">RECORD 003 · PLOT TWIST</div>
+      <h3>And then you were different.</h3>
+      <p>
+        You asked why I was being so rude.
+        Somehow, your reaction made me melt a little.
+      </p>
+      <div class="big-quote">"Why you're so rude?"</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="file-id">RECORD 004 · CHARACTER DEVELOPMENT</div>
+      <h3>Somewhere along the way.</h3>
+      <p>
+        We got close. We talked, understood each other,
+        and found a kind of ease that doesn't happen with just anyone.
+      </p>
+    </div>
+  </div>
+
+  <div class="card center reveal">
+    <div class="kicker">The official summary</div>
+    <div class="big-quote">
+      "A terrible first sentence. An unexpectedly good story."
+    </div>
+    <p>
+      If this were a movie, the opening scene would get one star.
+      Fortunately, the casting department did something right.
+    </p>
+  </div>
+</section>
+
+<!-- SCENE 03: THE INCIDENT REPORT -->
+<section id="case">
+  <div class="section-heading reveal">
+    <div class="kicker">Restricted file · Incident report 001</div>
+    <h2>The case of<br><em>the missing manners.</em></h2>
+    <p>For legal reasons, this section is entirely your fault for being memorable.</p>
+  </div>
+
+  <div class="case-paper reveal">
+    <div class="file-id">OFFICIAL INVESTIGATION DOCUMENT · AZAR DIVISION</div>
+
+    <h3>INCIDENT REPORT #FUCK-YOUU</h3>
+
+    <p><strong>Suspect:</strong> Ameen</p>
+    <p><strong>Victim:</strong> Khawla's first impression of Ameen</p>
+    <p><strong>Location:</strong> Azar, the scene of the crime</p>
+    <p><strong>Charges:</strong> Excessive trolling, suspicious behaviour, aggravated lack of charm.</p>
+
+    <div class="quote-big">"Fuck youu."</div>
+
+    <p><strong>Defence statement:</strong> "Your Honour, I was joking."</p>
+    <p><strong>Prosecution response:</strong> "That is not helping your case."</p>
+    <p><strong>Judge Khawla:</strong> "Why you're so rude?"</p>
+
+    <div class="gold-line"></div>
+
+    <div class="center">
+      <span class="case-stamp">CASE STILL UNDER REVIEW</span>
+    </div>
+  </div>
+
+  <div class="card center reveal">
+    <div class="kicker">Interactive evidence</div>
+    <h3>How should the court sentence Ameen?</h3>
+    <p>Choose wisely, Your Honour. He is already nervous.</p>
+
+    <div class="choice-row">
+      <button class="choice-button" onclick="chooseVerdict(0)">Public apology</button>
+      <button class="choice-button" onclick="chooseVerdict(1)">One thousand roses</button>
+      <button class="choice-button" onclick="chooseVerdict(2)">Lifetime teasing</button>
+    </div>
+
+    <div class="choice-result" id="verdictResult" aria-live="polite">
+      Awaiting the judge's decision…
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 04: HER PHOTO -->
+<section id="portrait">
+  <div class="section-heading reveal">
+    <div class="kicker">Chapter 02 · The main character</div>
+    <h2>Every universe<br>has its <em>centre.</em></h2>
+    <p>
+      The archive contains one photograph.
+      No extra gallery. No unnecessary distractions.
+    </p>
+  </div>
+
+  <div class="portrait-frame reveal">
+    <img
+      src="assets/khawla.jpeg"
+      alt="Khawla"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+    >
+    <div style="display:none;padding:35px 10px;text-align:center;color:var(--rose)">
+      Photograph not found.<br>
+      <small>Check that assets/khawla.jpeg exists.</small>
+    </div>
+    <div class="portrait-caption">The girl who wasn't supposed to be part of the plot. ♡</div>
+  </div>
+
+  <div class="center reveal">
+    <div class="big-quote">
+      "Some people enter your day.<br>Some stay in your thoughts."
+    </div>
+    <p>
+      And some somehow manage to do both without even trying.
+    </p>
+  </div>
+</section>
+
+<!-- SCENE 05: THE ROSES -->
+<section id="roses">
+  <div class="section-heading reveal">
+    <div class="kicker">Chapter 03 · A gift that never wilts</div>
+    <h2>Flowers <em>for you.</em></h2>
+    <p>
+      No delivery fees. No wilting petals. No awkward florist interaction.
+      Just press the rose.
+    </p>
+  </div>
+
+  <div class="card center reveal">
+    <div class="rose-garden">
+      <button id="roseButton" class="rose-button" type="button"
+              aria-label="Make the roses bloom">🌹</button>
+    </div>
+
+    <div class="rose-message" id="roseMessage">
+      A little garden is waiting for you.
+    </div>
+
+    <button class="button" id="bloomButton" type="button">
+      MAKE THE ROSES BLOOM ✿
+    </button>
+
+    <p style="font-size:.8rem;margin-top:25px">
+      For someone who's smart, gorgeous, open-minded,
+      and genuinely knows how to keep a conversation alive.
+    </p>
+  </div>
+</section>
+
+<!-- SCENE 06: THE EVIDENCE -->
+<section id="reasons">
+  <div class="section-heading reveal">
+    <div class="kicker">Chapter 04 · Evidence, your honour</div>
+    <h2>Things I like about you.<br><em>Don't let it go to your head.</em></h2>
+  </div>
+
+  <div class="grid">
+    <div class="card reason-card reveal">
+      <div class="reason-number">♡ 01</div>
+      <h3>Your personality</h3>
+      <p>You make talking feel easy.</p>
+    </div>
+
+    <div class="card reason-card reveal">
+      <div class="reason-number">✦ 02</div>
+      <h3>Your brain</h3>
+      <p>Smart, curious, and open to new things. A dangerous combination.</p>
+    </div>
+
+    <div class="card reason-card reveal">
+      <div class="reason-number">03</div>
+      <h3>Let's be honest</h3>
+      <p>You're hot. I said what I said.</p>
+    </div>
+
+    <div class="card reason-card reveal">
+      <div class="reason-number">04</div>
+      <h3>The way you talk</h3>
+      <p>You know how to have a conversation and genuinely connect.</p>
+    </div>
+
+    <div class="card reason-card reveal">
+      <div class="reason-number">05</div>
+      <h3>You understand me</h3>
+      <p>Being understood without explaining every little thing means a lot.</p>
+    </div>
+
+    <div class="card reason-card reveal">
+      <div class="reason-number">06</div>
+      <h3>You surprised me</h3>
+      <p>I was trolling strangers, and one stranger became different.</p>
+    </div>
+  </div>
+
+  <div class="big-quote reveal">
+    "You were never part of the plan.<br>That might be my favourite part."
+  </div>
+</section>
+
+<!-- SCENE 07: MOOD NOTES -->
+<section id="notes">
+  <div class="section-heading reveal">
+    <div class="kicker">Chapter 05 · Notes for future Khawla</div>
+    <h2>Open when…<br><em>you need a little something.</em></h2>
+    <p>Four little notes, for four different versions of you.</p>
+  </div>
+
+  <div class="grid two">
+    <article class="card note-card reveal" tabindex="0" role="button"
+             aria-expanded="false" onclick="toggleNote(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleNote(this)}">
+      <div class="note-instruction">NOTE 001 · OPEN WHEN NEEDED</div>
+      <h3>💗 You need a reminder of how wonderful you are</h3>
+      <p>Tap to open your note ↗</p>
+      <div class="note-content">
+        You're wonderful, Khawla. You're smart, beautiful, open to the world,
+        and you deserve good things—not just today, but on ordinary Tuesdays too.
+        You don't have to accomplish something extraordinary to be worth
+        appreciating. You already are.
+      </div>
+    </article>
+
+    <article class="card note-card reveal" tabindex="0" role="button"
+             aria-expanded="false" onclick="toggleNote(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleNote(this)}">
+      <div class="note-instruction">NOTE 002 · EMERGENCY HUMOUR</div>
+      <h3>🙄 Ameen is being dramatic</h3>
+      <p>Tap to open your note ↗</p>
+      <div class="note-content">
+        I am never dramatic. I am simply a highly expressive and deeply
+        misunderstood artist. And you're lucky you stayed long enough to
+        discover character development. Please direct all complaints to
+        the Department of Unnecessary Attitude.
+      </div>
+    </article>
+
+    <article class="card note-card reveal" tabindex="0" role="button"
+             aria-expanded="false" onclick="toggleNote(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleNote(this)}">
+      <div class="note-instruction">NOTE 003 · A QUIETER MOMENT</div>
+      <h3>🌙 You can't switch your brain off</h3>
+      <p>Tap to open your note ↗</p>
+      <div class="note-content">
+        You don't have to figure everything out tonight. Let the day end,
+        let your shoulders relax, and give yourself the same patience you
+        give other people. Not every question needs an answer before you
+        sleep. Some things can wait until tomorrow.
+      </div>
+    </article>
+
+    <article class="card note-card reveal" tabindex="0" role="button"
+             aria-expanded="false" onclick="toggleNote(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleNote(this)}">
+      <div class="note-instruction">NOTE 004 · YOUR DAY</div>
+      <h3>🎂 It's your 22nd birthday</h3>
+      <p>Tap to open your note ↗</p>
+      <div class="note-content">
+        Happy birthday, Khawla. I hope this year brings you real happiness,
+        exciting opportunities, people who see your worth, and memories that
+        make you smile long after the moment has passed. You deserve a year
+        that feels good to live, not just good to post about.
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- SCENE 08: CLASSIFIED DISCOVERIES -->
+<section id="classified">
+  <div class="section-heading reveal">
+    <div class="kicker">Restricted access · Three files remain</div>
+    <h2>Not everything<br>is in the <em>official record.</em></h2>
+    <p>
+      The archive has three additional files.
+      Open all of them to prepare the final chapter.
+    </p>
+  </div>
+
+  <div class="grid">
+    <article class="card discovery reveal" role="button" tabindex="0"
+             aria-expanded="false" onclick="discover(this,0)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();discover(this,0)}">
+      <div class="discovery-icon">01</div>
+      <div class="file-id">SEALED FILE</div>
+      <h3>The beginning</h3>
+      <p>What was the first impression?</p>
+      <div class="discovery-answer">
+        A historic disaster. The witnesses are still recovering.
+      </div>
+    </article>
+
+    <article class="card discovery reveal" role="button" tabindex="0"
+             aria-expanded="false" onclick="discover(this,1)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();discover(this,1)}">
+      <div class="discovery-icon">02</div>
+      <div class="file-id">SEALED FILE</div>
+      <h3>The plot twist</h3>
+      <p>Why did the conversation continue?</p>
+      <div class="discovery-answer">
+        Because beneath the terrible opening line was someone worth getting to know.
+      </div>
+    </article>
+
+    <article class="card discovery reveal" role="button" tabindex="0"
+             aria-expanded="false" onclick="discover(this,2)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();discover(this,2)}">
+      <div class="discovery-icon">03</div>
+      <div class="file-id">SEALED FILE</div>
+      <h3>The reason</h3>
+      <p>Why was all of this made?</p>
+      <div class="discovery-answer">
+        Because an ordinary birthday message couldn't contain everything Ameen wanted to say.
+      </div>
+    </article>
+  </div>
+
+  <div class="card center reveal">
+    <div id="clueStatus">FILES OPENED: 0 / 3</div>
+    <p id="clueMessage">
+      The archive is incomplete. Your curiosity is required.
+    </p>
+    <button id="clueButton" class="button" type="button"
+            disabled onclick="goToFinale()">
+      PROCEED TO THE FINAL FILE 🔒
+    </button>
+  </div>
+</section>
+
+<!-- SCENE 09: BIRTHDAY -->
+<section id="birthday">
+  <div class="section-heading reveal">
+    <div class="kicker">October 16 · A new chapter begins</div>
+    <h2>Welcome to<br><em>Level Twenty-Two.</em></h2>
+    <p>New age. New chapter. Same wonderfully unique Khawla.</p>
+  </div>
+
+  <div class="birthday-card reveal">
+    <div class="micro">PLAYER PROFILE · UPDATED</div>
+    <div class="age-number">22</div>
+    <div class="gold-line"></div>
+
+    <h3>Happy birthday, Khawla.</h3>
+
+    <p>
+      I hope this next chapter is full of good surprises, exciting
+      opportunities, peaceful days, and people who appreciate the person
+      you are.
+    </p>
+
+    <p>
+      I hope you find new things to love, become more of the person
+      you want to be, and get moments that make you stop and think,
+      "Yeah. Life can be beautiful."
+    </p>
+
+    <p>
+      And if this year gets a little messy sometimes, I hope you remember
+      that one difficult chapter doesn't define the whole story.
+    </p>
+
+    <div class="big-quote">
+      "May your next chapter be one of your favourites."
+    </div>
+
+    <p class="gold">With affection, mischief, and questionable opening lines.</p>
+  </div>
+</section>
+
+<!-- SCENE 10: THE FINAL GATE -->
+<section id="finale">
+  <div class="section-heading reveal">
+    <div class="kicker">Final chapter · Personal correspondence</div>
+    <h2>One last thing<br>before you <em>go.</em></h2>
+    <p>
+      You made it through the archive.
+      Now there's a message that isn't meant for everyone.
+    </p>
+  </div>
+
+  <div class="card final-gate reveal">
+    <div class="lock-icon" id="lockIcon">♧</div>
+
+    <div class="micro">DOCUMENT 022-A · RESTRICTED</div>
+
+    <h3 id="gateTitle">A letter from Ameen.</h3>
+
+    <p id="gateDescription">
+      The password isn't a birthday, a date, or a complicated riddle.
+      Think about the very first thing I said to you.
+    </p>
+
+    <form id="passwordForm" class="password-form">
+      <input
+        id="passwordInput"
+        class="password-input"
+        type="password"
+        placeholder="Enter the secret password"
+        aria-label="Secret password"
+        autocomplete="off"
+        required
+      >
+      <button class="button" id="unlockButton" type="submit">UNLOCK ♡</button>
+    </form>
+
+    <div id="errorMessage" role="status" aria-live="polite"></div>
+
+    <div class="letter" id="letter">
+      <div class="letter-label">A PRIVATE LETTER · FOR KHAWLA ONLY</div>
+      <div id="typedLetter"></div>
+      <div id="signature" class="signature">— Ameen ♡</div>
+
+      <div class="letter-controls">
+        <button class="button" id="finishTyping" type="button" style="display:none">
+          SHOW THE REST OF THE LETTER
+        </button>
+        <button class="button" id="letterMusicButton" type="button">
+          PLAY / PAUSE THE SONG ♫
+        </button>
+      </div>
+
+      <div class="letter-footer">
+        NOW PLAYING · STILL WITH YOU — JUNG KOOK
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-heart">♡</div>
+  <div class="footer-title">And that's the story.</div>
+  <div class="footer-line"></div>
+  <p>Some encounters are random. Some memories stay.</p>
+  <p class="footer-small">THE KHAWLA FILES · MADE BY AMEEN · OCTOBER 16</p>
+</footer>
+
+<script>
+/* =====================================
+   CONFIGURATION
+===================================== */
+
+const SECRET_PASSWORD = "FUCKYOU";
+
+const finalLetter = [
+  "Dear Khawla,\n\n",
+  "Happy birthday, troublemaker. You're turning 22, and I hope this new chapter is full of good surprises, exciting opportunities, peaceful days, and people who appreciate the person you are.\n\n",
+  "I'm genuinely glad that random day on Azar happened. I definitely didn't start with my best line, but I'm glad you saw past it. Over these two years, you've become someone I can talk to, someone who understands me, and someone whose presence I appreciate more than a joke can explain.\n\n",
+  "You're wonderful. You're smart, beautiful, open-minded, and you have a way of talking that makes a conversation feel like it can go anywhere. You deserve the best this world has to offer. Not only the exciting, cinematic kind of happiness, but also the quiet kind: the peaceful mornings, the easy laughter, the feeling of being understood, and the days when everything simply feels right.\n\n",
+  "I wanted to make you something a little different this year. Something you could explore, laugh at, and hopefully remember. Maybe it's a little dramatic. Maybe the archive is unnecessarily serious for a story that started with me being rude. But, honestly, that feels pretty on-brand for us.\n\n",
+  "And yes, I still stand by absolutely none of that first sentence. Mostly.\n\n",
+  "I don't know exactly what this next year will bring you, but I hope it brings you closer to everything that makes you happy. I hope you keep discovering new things, keep being curious, keep laughing at ridiculous things, and never feel that you have to become someone else to deserve good things.\n\n",
+  "I'm not writing this to make your birthday complicated or to ask you for some grand response. I just wanted to make sure you knew that you matter to me, that I'm glad our paths crossed, and that I'm genuinely wishing you the best.\n\n",
+  "So, happy 22nd birthday, Khawla. Thank you for being you, and thank you for being part of a story that began in the most ridiculous way possible.\n\n",
+  "Keep being exactly the kind of person you are.\n\n"
+];
+
+let openedFiles = new Set();
+let typingTimeout = null;
+let fullLetterText = "";
+let currentLetterIndex = 0;
+let letterIsTyping = false;
+let celebrationDone = false;
+
+/* =====================================
+   STARS AND SHOOTING STARS
+===================================== */
+
+(function createSky() {
+  const sky = document.getElementById("sky");
+
+  for (let i = 0; i < 115; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.setProperty("--duration", (2 + Math.random() * 5) + "s");
+
+    const size = Math.random() > .85 ? 3 : 2;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    star.style.animationDelay = Math.random() * 5 + "s";
+
+    sky.appendChild(star);
+  }
+
+  setInterval(() => {
+    if (document.hidden) return;
+
+    const shootingStar = document.createElement("span");
+    shootingStar.className = "shooting-star";
+    shootingStar.style.left = 20 + Math.random() * 100 + "%";
+    shootingStar.style.top = Math.random() * 60 + "%";
+    sky.appendChild(shootingStar);
+
+    setTimeout(() => shootingStar.remove(), 1900);
+  }, 7000);
+})();
+
+/* =====================================
+   SCROLL PROGRESS
+===================================== */
+
+function updateProgress() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0
+    ? (window.scrollY / scrollable) * 100
+    : 0;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+}
+
+window.addEventListener("scroll", updateProgress, { passive: true });
+window.addEventListener("resize", updateProgress);
+updateProgress();
+
+/* =====================================
+   SCROLL REVEALS
+===================================== */
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+/* =====================================
+   MUSIC — ONE CONTINUOUS TRACK
+===================================== */
+
+const music = document.getElementById("music");
+const musicToggle = document.getElementById("musicToggle");
+const musicState = document.getElementById("musicState");
+const musicDisc = document.getElementById("musicDisc");
+
+function updateMusic() {
+  const playing = !music.paused;
+
+  musicToggle.textContent = playing ? "Ⅱ" : "▶";
+  musicToggle.setAttribute(
+    "aria-label",
+    playing ? "Pause music" : "Play music"
+  );
+
+  musicState.textContent = playing
+    ? "Playing · Jung Kook"
+    : "Tap to play";
+
+  musicDisc.classList.toggle("playing", playing);
+}
+
+async function playMusic() {
+  try {
+    await music.play();
+  } catch (error) {
+    musicState.textContent = "Tap ▶ to start the soundtrack";
+  }
+
+  updateMusic();
+}
+
+async function toggleMusic() {
+  if (music.paused) {
+    await playMusic();
+  } else {
+    music.pause();
+    updateMusic();
+  }
+}
+
+musicToggle.addEventListener("click", toggleMusic);
+document.getElementById("letterMusicButton").addEventListener("click", toggleMusic);
+music.addEventListener("play", updateMusic);
+music.addEventListener("pause", updateMusic);
+music.addEventListener("ended", updateMusic);
+
+/* Start music on the visitor's first intentional click. */
+document.getElementById("enterArchive").addEventListener("click", function() {
+  playMusic();
+
+  const intro = document.getElementById("intro");
+  intro.classList.add("leaving");
+
+  setTimeout(() => {
+    intro.style.display = "none";
+    document.getElementById("opening").scrollIntoView({ behavior: "smooth" });
+  }, 1200);
+});
+
+/* =====================================
+   COURTROOM GAME
+===================================== */
+
+function chooseVerdict(choice) {
+  const result = document.getElementById("verdictResult");
+
+  const responses = [
+    "The court accepts the apology. However, the emotional damages are considerable. Ameen is sentenced to write an unnecessarily long birthday website.",
+    "ONE THOUSAND ROSES?! The court is impressed. The budget department is currently crying in the hallway.",
+    "Lifetime teasing has been approved. The defendant has no right to appeal. Frankly, he probably deserves it."
+  ];
+
+  result.textContent = "";
+  result.textContent = responses[choice];
+}
+
+/* =====================================
+   ROSE GARDEN
+===================================== */
+
+const roseButton = document.getElementById("roseButton");
+const roseMessage = document.getElementById("roseMessage");
+
+const roseMessages = [
+  "One rose for your smile.",
+  "One for your beautiful mind.",
+  "One for the conversations that never feel ordinary.",
+  "One for being unexpectedly, wonderfully you.",
+  "And one more because a single rose didn't feel like enough. ♡"
+];
+
+let roseCount = 0;
+
+function bloomRose() {
+  roseButton.classList.remove("bloomed");
+  void roseButton.offsetWidth;
+  roseButton.classList.add("bloomed");
+
+  roseCount++;
+  roseMessage.textContent = roseMessages[(roseCount - 1) % roseMessages.length];
+
+  if (roseCount >= 5) {
+    roseButton.textContent = "💐";
+  }
+
+  if (roseCount === 5) {
+    roseMessage.textContent =
+      "Five little reasons. One very special birthday girl. Keep the bouquet. ♡";
+    createPetals(18);
+  }
+}
+
+roseButton.addEventListener("click", bloomRose);
+document.getElementById("bloomButton").addEventListener("click", bloomRose);
+
+/* =====================================
+   INTERACTIVE NOTES
+===================================== */
+
+function toggleNote(card) {
+  const isOpen = card.classList.toggle("open");
+  card.setAttribute("aria-expanded", String(isOpen));
+
+  const instruction = card.querySelector("p");
+  if (instruction) {
+    instruction.textContent = isOpen ? "Tap to close ↙" : "Tap to open your note ↗";
+  }
+}
+
+/* =====================================
+   CLASSIFIED FILES
+===================================== */
+
+function discover(card, number) {
+  if (openedFiles.has(number)) return;
+
+  openedFiles.add(number);
+  card.classList.add("found");
+  card.setAttribute("aria-expanded", "true");
+
+  const total = openedFiles.size;
+
+  document.getElementById("clueStatus").textContent =
+    `FILES OPENED: ${total} / 3`;
+
+  const message = document.getElementById("clueMessage");
+
+  if (total === 1) {
+    message.textContent = "First file opened. The plot thickens.";
+  } else if (total === 2) {
+    message.textContent = "Two down. One more secret stands between you and the final file.";
+  } else {
+    message.textContent = "All files unlocked. The archive is ready for its final chapter.";
+    const button = document.getElementById("clueButton");
+    button.disabled = false;
+    button.textContent = "OPEN THE FINAL FILE ↗";
+  }
+}
+
+function goToFinale() {
+  if (openedFiles.size !== 3) return;
+
+  document.getElementById("finale").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+/* =====================================
+   PASSWORD CHECK
+===================================== */
+
+document.getElementById("passwordForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const input = document.getElementById("passwordInput");
+  const error = document.getElementById("errorMessage");
+  const unlockButton = document.getElementById("unlockButton");
+
+  // Case-insensitive; removes spaces around the password.
+  const entered = input.value.trim().toUpperCase();
+
+  if (entered !== SECRET_PASSWORD) {
+    error.textContent = "Access denied. Think back to that first conversation. 👀";
+
+    input.value = "";
+    input.focus();
+
+    document.getElementById("lockIcon").animate([
+      { transform: "translateX(0)" },
+      { transform: "translateX(-7px)" },
+      { transform: "translateX(7px)" },
+      { transform: "translateX(-4px)" },
+      { transform: "translateX(0)" }
+    ], { duration: 380 });
+
+    return;
+  }
+
+  error.textContent = "";
+  input.disabled = true;
+  unlockButton.disabled = true;
+
+  document.getElementById("lockIcon").textContent = "♡";
+  document.getElementById("gateTitle").textContent = "You found the final file.";
+  document.getElementById("gateDescription").textContent =
+    "No more clues. No more locked doors. Just a letter from me to you.";
+
+  const letter = document.getElementById("letter");
+  letter.classList.add("open");
+
+  fullLetterText = finalLetter.join("");
+
+  playMusic();
+
+  setTimeout(() => {
+    letter.scrollIntoView({ behavior: "smooth", block: "center" });
+    beginTyping();
+  }, 900);
+});
+
+/* =====================================
+   TYPEWRITER LETTER
+===================================== */
+
+function beginTyping() {
+  if (letterIsTyping || currentLetterIndex >= fullLetterText.length) return;
+
+  letterIsTyping = true;
+
+  const target = document.getElementById("typedLetter");
+  const signature = document.getElementById("signature");
+  const finishButton = document.getElementById("finishTyping");
+
+  target.classList.add("typing");
+  finishButton.style.display = "inline-flex";
+
+  function typeNext() {
+    if (currentLetterIndex >= fullLetterText.length) {
+      finishLetter();
+      return;
+    }
+
+    const char = fullLetterText.charAt(currentLetterIndex);
+    target.textContent += char;
+    currentLetterIndex++;
+
+    let delay = 24;
+
+    if (char === "\n") delay = 150;
+    if (/[.!?]/.test(char)) delay = 130;
+    if (char === ",") delay = 75;
+
+    typingTimeout = setTimeout(typeNext, delay);
+  }
+
+  typeNext();
+}
+
+function finishLetter() {
+  clearTimeout(typingTimeout);
+  letterIsTyping = false;
+
+  const target = document.getElementById("typedLetter");
+  target.textContent = fullLetterText;
+  target.classList.remove("typing");
+
+  document.getElementById("finishTyping").style.display = "none";
+  document.getElementById("signature").classList.add("show");
+
+  if (!celebrationDone) {
+    celebrationDone = true;
+    createPetals(55);
+  }
+}
+
+document.getElementById("finishTyping").addEventListener("click", finishLetter);
+
+/* =====================================
+   PETAL CELEBRATION
+===================================== */
+
+function createPetals(amount) {
+  const layer = document.getElementById("petalLayer");
+  const symbols = ["✿", "♡", "✧", "❀", "♥"];
+
+  for (let i = 0; i < amount; i++) {
+    setTimeout(() => {
+      const petal = document.createElement("span");
+      petal.className = "petal";
+      petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+      petal.style.left = Math.random() * 100 + "%";
+      petal.style.fontSize = (12 + Math.random() * 18) + "px";
+      petal.style.setProperty("--fall", (5 + Math.random() * 6) + "s");
+      petal.style.setProperty("--drift", ((Math.random() - .5) * 220) + "px");
+
+      layer.appendChild(petal);
+      setTimeout(() => petal.remove(), 12000);
+    }, i * 100);
+  }
+}
+
+/* INITIAL PLAYER STATE */
+updateMusic();
+</script>
+</body>
+</html>
